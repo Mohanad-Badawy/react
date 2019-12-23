@@ -14,7 +14,11 @@ function CustTable(props) {
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
-            <TableRow />
+            <TableRow>
+              {props.value.result.columns.map((head, i) => (
+                <TableCell align="right"> {head.code.split(".")[1]} </TableCell>
+              ))}
+            </TableRow>
           </TableHead>
         </Table>
       </TableContainer>

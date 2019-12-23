@@ -35,9 +35,11 @@ function CustPanel() {
 
   return (
     <div>
-      <h2>Start edit ing to see some magic happen! {dataTbl == null ? 'loading..':dataTbl.responseCode} </h2>
-      <CustTable name={dataTbl == null ? 'loading..':dataTbl.responseCode} />
-
+      {dataTbl == null ? (
+        "loading"
+      ) : (
+        <CustTable name={dataTbl.responseCode} value={dataTbl} />
+      )}
     </div>
   );
 }
