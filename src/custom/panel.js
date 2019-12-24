@@ -7,7 +7,7 @@ function CustPanel() {
 
   async function fetchUrl() {
     await axios
-      .get("https://www.mocky.io/v2/5dfb3ef62f00006200ff9d62")
+      .get("https://www.mocky.io/v2/5e01b7d42f00007e00dcd285")
       //  .then(response => console.log(response.data))
       .then(
         response => {

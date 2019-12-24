@@ -20,6 +20,24 @@ function CustTable(props) {
               ))}
             </TableRow>
           </TableHead>
+
+          <TableBody>
+            {props.value.result.rows.map(row => (
+              <TableRow key={row.name}>
+                {Object.keys(row).map(column => (
+                  <TableCell align="right"> {row[column]} </TableCell>
+                ))}
+
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="right">{row.calories}</TableCell>
+                <TableCell align="right">{row.fat}</TableCell>
+                <TableCell align="right">{row.carbs}</TableCell>
+                <TableCell align="right">{row.protein}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
         </Table>
       </TableContainer>
     </div>
