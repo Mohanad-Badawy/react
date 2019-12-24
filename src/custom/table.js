@@ -8,15 +8,19 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
 function CustTable(props) {
+  console.log("sssss", props);
   return (
     <div>
-      <h1>Hello, {props.name}</h1>;
+      <h1>Hello,</h1>;
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              {props.value.result.columns.map((head, i) => (
-                <TableCell align="right"> {head.code.split(".")[1]} </TableCell>
+              {Object.keys(props.columns).map(attr => (
+                <TableCell align="right">
+                  {" "}
+                  {props.columns[attr].code}{" "}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
@@ -27,14 +31,6 @@ function CustTable(props) {
                 {Object.keys(row).map(column => (
                   <TableCell align="right"> {row[column]} </TableCell>
                 ))}
-
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
               </TableRow>
             ))}
           </TableBody>
