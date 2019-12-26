@@ -1,41 +1,52 @@
-import React from "react";
-import Table from "@material-ui/core/Table";
-import TableContainer from "@material-ui/core/TableContainer";
-import Paper from "@material-ui/core/Paper";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
+import React, { useState, useEffect, Component } from "react";
+import MaterialTable from "material-table";
 
 function CustTable(props) {
   console.log("sssss", props);
-  return (
-    <div>
-      <h1>Hello,</h1>;
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              {Object.keys(props.columns).map(attr => (
-                <TableCell align="right">
-                  {" "}
-                  {props.columns[attr].code}{" "}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
+  const [columns, setColumns] = useState([]);
 
-          <TableBody>
-            {props.value.result.rows.map(row => (
-              <TableRow key={row.name}>
-                {Object.keys(row).map(column => (
-                  <TableCell align="right"> {row[column]} </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+  const [data, setData] = useState({
+    data: [
+      { REQUEST_ID: "Mehmet", surname: "Baran" },
+      {
+        PARTY_ID: "Zerya Betül",
+        surname: "Baran"
+      }
+    ]
+  });
+
+  function reMapcolumns() {
+    Object.keys(props.columns).map(column =>
+      // setColumns([columns, column])
+      // columns.push({
+      //   title: props.columns[column].label,
+      //   field: props.columns[column].code.split(".")[1]
+      // })
+
+      setColumns(columns => [
+        ...columns,
+
+        {
+          title: props.columns[column].label,
+          field: props.columns[column].code.split(".")[1]
+        }
+      ])
+    );
+
+    console.log("hjhhhhh", columns);
+  }
+
+  useEffect(() => {
+    reMapcolumns();
+    console.log("hjkgjk", columns);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.columns]);
+
+  return (
+    <div style={{ maxWidth: "100%" }}>
+      <MaterialTable title="table .." columns={columns} />
+      <h1>Hello</h1>;
     </div>
   );
 }
