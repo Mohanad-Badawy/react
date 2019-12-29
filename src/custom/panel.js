@@ -5,8 +5,8 @@ import axios from "axios";
 function CustPanel() {
   const [metaData, setMetaData] = useState(null);
   const [dataTbl, setDataTbl] = useState(null);
-  const service = "https://www.mocky.io/v2/5e01b7d42f00007e00dcd285";
-  const serviceMetaData = "https://www.mocky.io/v2/5e01f8e62f0000b091dcd493";
+  const service = "https://www.mocky.io/v2/5e086172300000540081a09a";
+  const serviceMetaData = "https://www.mocky.io/v2/5e084959300000540081a070";
 
   //to do function need to be intilized only once
   async function fetchData() {
@@ -63,7 +63,7 @@ function CustPanel() {
   return (
     <div>
       {(metaData == null) | (dataTbl == null) ? (
-        "loading"
+        "loading ..."
       ) : (
         <CustTable columns={metaData.columns} value={dataTbl} />
       )}
