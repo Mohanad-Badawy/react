@@ -8,6 +8,7 @@ function CustTable(props) {
   const [rows, setRows] = useState([]);
 
   function reMapcolumns() {
+    console.log("columns ", props.columns);
     Object.keys(props.columns).map(column =>
       setColumns(columns => [
         ...columns,
@@ -25,39 +26,46 @@ function CustTable(props) {
   function reMapRows() {
     console.log("gggg", props.value.result.rows);
 
-    Object.keys(props.value.result.rows).map(row =>
-      setRows(rows => [
-        ...rows,
+    props.value.result.rows.forEach(function(row, index) {
+      console.log("row .. ", index, row);
+      let record = [{}];
+      //let cells = new Map();
+      for (var cell in row) {
+        //record.set("REQUEST_ID","test");
+        //console.log("record h.fffhhh", cell.split(".")[1], row[cell]);
+        // record.push({ REQUEST_ID1: "test" });
+        // cells.set(cell.split(".")[1], row[cell]);
+        record[cell.split(".")[1]] = row[cell];
+        // record[0]["key31"] = "value31";
 
-        // ()=> row.map(cell => {
-        //   REQUEST_ID: "tablesss";
 
-        // })
-{
-        Object.keys(row).map(cell => {
 
-          REQUEST_ID: "test";
-         // console.log("----s ", cell);
-        }
-        
+
+
+       // console.log("record hhhh --", cells);
+
+
+       // record.push(cells);
+        console.log("record hhhh");
       }
-        
-        
-        )
-      ])
-    );
+      console.log("REQUEST_ID ", JSON.stringify(record));
+      setRows(rows => [...rows, record]);
+    });
+
+    console.log("after adding ", rows);
   }
 
   useEffect(() => {
     reMapcolumns();
     reMapRows();
-    console.log("hjkgjk", columns);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.columns]);
 
   return (
     <div style={{ maxWidth: "100%" }}>
+      <div> {JSON.stringify(rows)} </div>
+      <div> {JSON.stringify(columns)} </div>
       <MaterialTable
         title="table .."
         columns={columns}

@@ -5,7 +5,7 @@ import axios from "axios";
 function CustPanel() {
   const [metaData, setMetaData] = useState(null);
   const [dataTbl, setDataTbl] = useState(null);
-  const service = "https://www.mocky.io/v2/5e086172300000540081a09a";
+  const service = "https://www.mocky.io/v2/5e09d1db3000002d002444ea";
   const serviceMetaData = "https://www.mocky.io/v2/5e084959300000540081a070";
 
   //to do function need to be intilized only once
