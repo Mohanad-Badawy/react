@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
+import "../styles.css";
 
 function CustTable(props) {
   console.log("props ", props);
@@ -24,35 +25,14 @@ function CustTable(props) {
   }
 
   function reMapRows() {
-    console.log("gggg", props.value.result.rows);
-
     props.value.result.rows.forEach(function(row, index) {
-      console.log("row .. ", index, row);
       let record = [{}];
-      //let cells = new Map();
       for (var cell in row) {
-        //record.set("REQUEST_ID","test");
-        //console.log("record h.fffhhh", cell.split(".")[1], row[cell]);
-        // record.push({ REQUEST_ID1: "test" });
-        // cells.set(cell.split(".")[1], row[cell]);
         record[cell.split(".")[1]] = row[cell];
-        // record[0]["key31"] = "value31";
-
-
-
-
-
-       // console.log("record hhhh --", cells);
-
-
-       // record.push(cells);
-        console.log("record hhhh");
       }
-      console.log("REQUEST_ID ", JSON.stringify(record));
+      console.log("record .. ", JSON.stringify(record));
       setRows(rows => [...rows, record]);
     });
-
-    console.log("after adding ", rows);
   }
 
   useEffect(() => {
@@ -60,22 +40,24 @@ function CustTable(props) {
     reMapRows();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.columns]);
+  }, [props.columns, props.value]);
 
   return (
-    <div style={{ maxWidth: "100%" }}>
-      <div> {JSON.stringify(rows)} </div>
-      <div> {JSON.stringify(columns)} </div>
-      <MaterialTable
-        title="table .."
-        columns={columns}
-        data={rows}
-        options={{
-          filtering: true,
-          sorting: true
-        }}
-      />
-      <h1>Hello</h1>;
+    <div style={{ maxWidth: "70%", display: "inline-block" }}>
+      {columns == null ? (
+        "loading ..."
+      ) : (
+        <MaterialTable
+          title="table .."
+          columns={columns}
+          data={rows}
+          options={{
+            filtering: true,
+            sorting: true
+          }}
+        />
+      )}
+      ;
     </div>
   );
 }
