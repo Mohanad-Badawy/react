@@ -5,7 +5,7 @@ import axios from "axios";
 function CustPanel() {
   const [metaData, setMetaData] = useState(null);
   const [dataTbl, setDataTbl] = useState(null);
-  const service = "https://www.mocky.io/v2/5e09d1db3000002d002444ea";
+  const service = "https://www.mocky.io/v2/5e94407f310000d3365e2f35";
   const serviceMetaData = "https://www.mocky.io/v2/5e084959300000540081a070";
 
   //to do function need to be intilized only once
@@ -15,16 +15,16 @@ function CustPanel() {
       //  .then(response => console.log(response.data))
       .then(
         response => {
-          console.log("log --{}", response.data);
+          console.log("log  {}");
           setDataTbl(response.data);
           console.log("dataTbl Loaded ...");
         },
         error => {
-          console.log("--> ", error);
+          console.log("--> . -> {}", { error });
         }
       )
       .catch(error => {
-        console.log("Error fetching and parsing data", error);
+        console.log("Error fetching and parsing data", { error });
       })
       .finally(() => {
         console.log("finally dataTbl ", dataTbl);
@@ -42,7 +42,7 @@ function CustPanel() {
           console.log("Meta data Loaded ...");
         },
         error => {
-          console.log("--> ", error);
+          console.log("--> 5", { error });
         }
       )
       .catch(error => {
@@ -62,7 +62,7 @@ function CustPanel() {
 
   return (
     <div>
-      {(metaData == null) | (dataTbl == null) ? (
+      {metaData == null || dataTbl == null ? (
         "loading ..."
       ) : (
         <CustTable columns={metaData.columns} value={dataTbl} />

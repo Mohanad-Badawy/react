@@ -10,6 +10,7 @@ function CustTable(props) {
 
   function reMapcolumns() {
     console.log("columns ", props.columns);
+    setColumns([]);
     Object.keys(props.columns).map(column =>
       setColumns(columns => [
         ...columns,
@@ -25,6 +26,8 @@ function CustTable(props) {
   }
 
   function reMapRows() {
+    console.log("...................................................");
+    setRows([]);
     props.value.result.rows.forEach(function(row, index) {
       let record = [{}];
       for (var cell in row) {
@@ -40,7 +43,7 @@ function CustTable(props) {
     reMapRows();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.columns, props.value]);
+  }, [props.columns, props.value.rows]);
 
   return (
     <div style={{ maxWidth: "70%", display: "inline-block" }}>
@@ -50,10 +53,18 @@ function CustTable(props) {
         <MaterialTable
           title="table .."
           columns={columns}
-          data={rows}
+          data={rows == null ? [] : rows}
           options={{
             filtering: true,
-            sorting: true
+            sorting: true,
+            rowStyle: x => {
+              if (x.tableData.id % 2) {
+                return { backgroundColor: "#f2f2f2", boarder: "2px solid" };
+              }
+            },
+            headerStyle: {
+              backgroundColor: "#ddd"
+            }
           }}
         />
       )}
