@@ -28,6 +28,8 @@ function CustTable(props) {
   function reMapRows() {
     console.log("...................................................");
     setRows([]);
+
+if(props.value!=null &&props.value.result !=null )
     props.value.result.rows.forEach(function(row, index) {
       let record = [{}];
       for (var cell in row) {
@@ -43,15 +45,15 @@ function CustTable(props) {
     reMapRows();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.columns, props.value.rows]);
+  }, [props.columns, props.value]);
 
   return (
     <div style={{ maxWidth: "70%", display: "inline-block" }}>
       {columns == null ? (
-        "loading ..."
+        "loading .."
       ) : (
         <MaterialTable
-          title="table .."
+          title="table .. "
           columns={columns}
           data={rows == null ? [] : rows}
           options={{

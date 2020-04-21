@@ -62,7 +62,7 @@ function CustPanel() {
 
   return (
     <div>
-      {metaData == null || dataTbl == null ? (
+      {metaData == null ? (
         "loading ..."
       ) : (
         <CustTable columns={metaData.columns} value={dataTbl} />
