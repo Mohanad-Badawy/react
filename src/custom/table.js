@@ -53,7 +53,7 @@ if(props.value!=null &&props.value.result !=null )
         "loading .."
       ) : (
         <MaterialTable
-          title="table .. "
+          title="SubRequests  "
           columns={columns}
           data={rows == null ? [] : rows}
           options={{
